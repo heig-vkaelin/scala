@@ -94,13 +94,14 @@ while (compteur < 10) {
 // La boucle est exécutée 5 fois, le compteur vaut 3, 4, 7, 8, 11
 
 // 16.
-def recursive(x: Int): Int = {
-  println(x)
-  if (x > 100) return x
-  if (x % 7 == 0) return recursive(x + 8)
-  if (x % 2 != 0) return recursive(x + 12)
-  return recursive(x + 1)
-}
+def recursive(x: Int): Int = 
+  x match {
+    case x if x > 100 => x
+    case x if x % 7 == 0 => recursive(x + 8)
+    case x if x % 2 != 0 => recursive(x + 12)
+    case _ => recursive(x + 1)
+  }
+
 val x = 0
 recursive(x)
 // 0
