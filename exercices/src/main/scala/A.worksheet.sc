@@ -43,10 +43,10 @@ i match {
 // 10.
 var j = 1
 while (j < 100) {
-  if (j % 2 != 0 && j % 3 == 0 || j % 5 == 0) {
+  if (j % 3 == 0 || j % 5 == 0) {
     println(j)
   }
-  j += 1
+  j += 2
 }
 
 for (j <- 1 until 100 if j % 2 != 0 && j % 3 == 0 || j % 5 == 0) println(j)

@@ -45,7 +45,6 @@ reverse(List())
 def firstColumn(xs: List[List[Int]]): List[Int] =
   xs.map(x => x.head)
 
-
 def column(xs: List[List[Int]], col: Int): List[Int] = 
   xs.map(x => x(col))
 
@@ -70,7 +69,7 @@ hasZeroRow(List(List(1, 2, 3), List(4, 5, 6), List(0, 0, 0)))
 
 // 10.
 def isPrime(x: Int): Boolean = 
-  2.to(x - 1).forall(y => x % y != 0)
+  x > 1 && 2.to(x - 1).forall(y => x % y != 0)
 
 isPrime(2)
 isPrime(3)
