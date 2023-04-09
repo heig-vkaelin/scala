@@ -1,20 +1,15 @@
 // 1.
-
-// 1. On souhaite créer une Map[Int, String] à partir d’un Vector[String] et d’une List[Int], ou les clés sont les
-// éléments de la liste et les valeurs les éléments du vecteur (en se basant sur la collection la plus petite).
-// (a) Ecrivez une première fonction récursive pour combiner les clés et les valeurs. Cette dernière prend le vecteur et la liste en paramètre et retourne une List[(Int, String)].
-
 // a)
-// def createMap(v: Vector[String], l: List[Int]): Map[Int, String] =
-//   if (v.isEmpty || l.isEmpty) Nil
-//   else (l.head, v.head) :: createMap(v.tail, l.tail)
+def createMap(v: Vector[String], l: List[Int]): List[(Int, String)] =
+  if (v.isEmpty || l.isEmpty) Nil
+  else (l.head, v.head) :: createMap(v.tail, l.tail)
 
-// (b) Ecrivez une seconde fonction qui prend le retour de la première fonction en paramètre et qui retourne la
-// Map[Int, String].
+// (b)
+def createRealMap(tuples: List[(Int, String)]): Map[Int, String] =
+  tuples.foldLeft(Map[Int, String]())((acc, tuple) => acc + tuple)
 
-// b)
-
-// TODO
+val tuples = createMap(Vector("a", "b", "c", "d"), List(1, 2, 3, 4, 5))
+createRealMap(tuples)
 
 // 2.
 def init[T](xs: List[T]): List[T] = xs match
@@ -66,4 +61,12 @@ def decode[T](xs: List[(T, Int)]): List[T] =
 decode(List(("a", 3), ("b", 1), ("c", 2), ("a", 1)))
 
 // 8.
-// TODO
+def takeWhileStrictlyIncreasing(list: List[Int]): List[Int] = list match
+  case Nil => Nil
+  case x :: xs => 
+    val increasing = xs.takeWhile(_ > x)
+    x :: takeWhileStrictlyIncreasing(increasing)
+
+takeWhileStrictlyIncreasing(List(1, 8, 9, 9, 10, 2, 3))
+takeWhileStrictlyIncreasing(List(9, 10, 1, 2, 3, 11, 12, 13))
+takeWhileStrictlyIncreasing(List())
