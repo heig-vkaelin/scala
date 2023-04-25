@@ -21,21 +21,7 @@ type FingerPrint = String
 // You can begin your development with this simple example.
 // A dictionary of English words is given to you as an external file (linuxwords.txt)
 // that you must load to use with your program.
-val dictionary: List[Word] =
-  List(
-    "ate",
-    "eat",
-    "tea",
-    "pot",
-    "top",
-    "sonja",
-    "jason",
-    "normal",
-    "I",
-    "love",
-    "you",
-    "olive"
-  )
+val dictionary: List[Word] = Source.fromResource("linuxwords.txt").getLines.toList
 
 /** Converts a word/sentence into its fingerprint. The fingerprint has the same
   * characters as the word, with the same number of occurrences, but the
@@ -149,8 +135,8 @@ def sentenceAnagrams(sentence: Sentence): List[Sentence] =
       for {
         sub <- subseqs(fp)
         word <- wordAnagrams(sub)
-        sent <- sentenceAnagramsFP(subtract(fp, sub))
-      } yield word :: sent
+        subSentence <- sentenceAnagramsFP(subtract(fp, sub))
+      } yield word :: subSentence
     }
   sentenceAnagramsFP(fingerPrint(sentence))
 
