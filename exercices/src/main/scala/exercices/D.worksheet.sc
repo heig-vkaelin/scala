@@ -53,6 +53,7 @@ def splitRecursive[A](n: Int, ls: List[A]): (List[A], List[A]) =
       (h :: pre, post)
 
 splitRecursive(3, List('a', 'b', 'c', 'd', 'e'))
+splitRecursive(3, List('a', 'b'))
 
 // 7.
 def decode[T](xs: List[(T, Int)]): List[T] = 
