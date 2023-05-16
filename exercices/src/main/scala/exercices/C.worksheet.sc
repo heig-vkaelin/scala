@@ -83,7 +83,7 @@ linesLonger(List("Hi", "World", "Scala"), 3)
 
 // 12.
 def longestLineLength(lines: List[String]): Int = 
-  lines.foldLeft(0)((acc, x) => if (acc > x.length) acc else x.length)
+  lines.foldLeft(0)((acc, x) => math.max(acc, x.length))
 
 def longestLineLengthV2(lines: List[String]): Int = 
   lines.reduceLeft((acc, x) => if (acc.length > x.length) acc else x).length
