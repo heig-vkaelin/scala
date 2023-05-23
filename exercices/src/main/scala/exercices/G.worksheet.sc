@@ -32,8 +32,16 @@ val f5 = f4.flatMap(_ => f("f5"))
 
 // c)
 val f6 = f("f6")
-val f7 = f6.filter(_._1 > 700)
+val f7 = f6.filter(_._1 > 700).flatMap(_ => f("f7"))
 val f8 = f7.flatMap(_ => f("f8"))
+
+// Variante avec for comprehension
+// val v2 = for {
+//   f6 <- f("f6")
+//   if f6._1 > 700
+//   f7 <- f("f7")
+//   f8 <- f("f8")
+// } yield f8._1
 
 // d)
 val list = Future.sequence(List(f("f9"), f("f10"), f("f11"))).onComplete {

@@ -38,13 +38,10 @@ def firstNFibs(n:Int) : List[Int] =
 firstNFibs(10)
 
 // 5. a)
-def createAbLazyList: LazyList[String] = {
-  def loop(s: LazyList[String]): LazyList[String] = s match {
-    case head #:: tail =>
-      head #:: loop(tail ++ LazyList(head + "a", head + "b"))
-  }
-  "" #:: loop(LazyList("a", "b"))
-}
+def createAbLazyList: LazyList[String] =
+  LazyList
+    .iterate(List(""))(acc => acc.flatMap(s => List(s + "a", s + "b")))
+    .flatten
 
 createAbLazyList.take(10).toList
 
