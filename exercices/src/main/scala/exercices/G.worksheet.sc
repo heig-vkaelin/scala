@@ -15,8 +15,8 @@ def f(name: String): Future[(Int, String)] = {
     if (success) (duration, name) else throw new Exception(s"did not succeed")
   }
   f.onComplete {
-    case scala.util.Success((duration, name)) => println(s"success for $name with value $duration")
-    case scala.util.Failure(exception) => println(s"$name failed with $exception")
+    case Success((duration, name)) => println(s"success for $name with value $duration")
+    case Failure(exception) => println(s"$name failed with $exception")
   }
   f
 }
